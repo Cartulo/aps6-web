@@ -2,6 +2,20 @@
     "compileOnSave": false,
     "compilerOptions": {
         "baseUrl": "./",
+        "paths": {
+          "cadastros": [
+            "dist/cadastros"
+          ],
+          "ctx-cadastros": [
+            "dist/ctx-cadastros"
+          ],
+          "ctx-gerenciamento": [
+            "dist/ctx-gerenciamento"
+          ],
+          "gerenciamento": [
+            "dist/gerenciamento"
+          ]
+        },
         "outDir": "./dist/out-tsc",
         "forceConsistentCasingInFileNames": true,
         "strict": true,

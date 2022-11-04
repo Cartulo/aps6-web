@@ -106,6 +106,130 @@
                     }
                 }
             }
+        },
+        "cadastros": {
+          "projectType": "library",
+          "root": "projects/cadastros",
+          "sourceRoot": "projects/cadastros/src",
+          "prefix": "lib",
+          "architect": {
+            "build": {
+              "builder": "@angular-devkit/build-angular:ng-packagr",
+              "options": {
+                "project": "projects/cadastros/ng-package.json"
+              },
+              "configurations": {
+                "production": {
+                  "tsConfig": "projects/cadastros/tsconfig.lib.prod.json"
+                },
+                "development": {
+                  "tsConfig": "projects/cadastros/tsconfig.lib.json"
+                }
+              },
+              "defaultConfiguration": "production"
+            },
+            "test": {
+              "builder": "@angular-devkit/build-angular:karma",
+              "options": {
+                "main": "projects/cadastros/src/test.ts",
+                "tsConfig": "projects/cadastros/tsconfig.spec.json",
+                "karmaConfig": "projects/cadastros/karma.conf.js"
+              }
+            }
+          }
+        },
+        "gerenciamento": {
+          "projectType": "library",
+          "root": "projects/gerenciamento",
+          "sourceRoot": "projects/gerenciamento/src",
+          "prefix": "lib",
+          "architect": {
+            "build": {
+              "builder": "@angular-devkit/build-angular:ng-packagr",
+              "options": {
+                "project": "projects/gerenciamento/ng-package.json"
+              },
+              "configurations": {
+                "production": {
+                  "tsConfig": "projects/gerenciamento/tsconfig.lib.prod.json"
+                },
+                "development": {
+                  "tsConfig": "projects/gerenciamento/tsconfig.lib.json"
+                }
+              },
+              "defaultConfiguration": "production"
+            },
+            "test": {
+              "builder": "@angular-devkit/build-angular:karma",
+              "options": {
+                "main": "projects/gerenciamento/src/test.ts",
+                "tsConfig": "projects/gerenciamento/tsconfig.spec.json",
+                "karmaConfig": "projects/gerenciamento/karma.conf.js"
+              }
+            }
+          }
+        },
+        "ctx-cadastros": {
+          "projectType": "library",
+          "root": "projects/ctx-cadastros",
+          "sourceRoot": "projects/ctx-cadastros/src",
+          "prefix": "ctx",
+          "architect": {
+            "build": {
+              "builder": "@angular-devkit/build-angular:ng-packagr",
+              "options": {
+                "project": "projects/ctx-cadastros/ng-package.json"
+              },
+              "configurations": {
+                "production": {
+                  "tsConfig": "projects/ctx-cadastros/tsconfig.lib.prod.json"
+                },
+                "development": {
+                  "tsConfig": "projects/ctx-cadastros/tsconfig.lib.json"
+                }
+              },
+              "defaultConfiguration": "production"
+            },
+            "test": {
+              "builder": "@angular-devkit/build-angular:karma",
+              "options": {
+                "main": "projects/ctx-cadastros/src/test.ts",
+                "tsConfig": "projects/ctx-cadastros/tsconfig.spec.json",
+                "karmaConfig": "projects/ctx-cadastros/karma.conf.js"
+              }
+            }
+          }
+        },
+        "ctx-gerenciamento": {
+          "projectType": "library",
+          "root": "projects/ctx-gerenciamento",
+          "sourceRoot": "projects/ctx-gerenciamento/src",
+          "prefix": "ctx",
+          "architect": {
+            "build": {
+              "builder": "@angular-devkit/build-angular:ng-packagr",
+              "options": {
+                "project": "projects/ctx-gerenciamento/ng-package.json"
+              },
+              "configurations": {
+                "production": {
+                  "tsConfig": "projects/ctx-gerenciamento/tsconfig.lib.prod.json"
+                },
+                "development": {
+                  "tsConfig": "projects/ctx-gerenciamento/tsconfig.lib.json"
+                }
+              },
+              "defaultConfiguration": "production"
+            },
+            "test": {
+              "builder": "@angular-devkit/build-angular:karma",
+              "options": {
+                "main": "projects/ctx-gerenciamento/src/test.ts",
+                "tsConfig": "projects/ctx-gerenciamento/tsconfig.spec.json",
+                "karmaConfig": "projects/ctx-gerenciamento/karma.conf.js"
+              }
+            }
+          }
         }
     },
     "defaultProject": "aps6-web",
