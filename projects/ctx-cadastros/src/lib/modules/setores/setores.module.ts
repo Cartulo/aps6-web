@@ -4,6 +4,7 @@ import {SetoresRoutingModule} from './setores.routing.module';
 import {ComponentsModule} from 'projects/components/src/lib/components.module';
 import {SetoresComponent} from './setores.component';
 import {ToolsModule} from 'projects/tools/src/public-api';
+import { ListarSetoresComponent } from './pages';
 
 @NgModule({
     imports: [
@@ -13,7 +14,7 @@ import {ToolsModule} from 'projects/tools/src/public-api';
     ],
     declarations: [
         SetoresComponent,
-        // ListarSetoresComponent,
+        ListarSetoresComponent,
         // NovoSetorComponent,
         // EditarSetorComponent,
         // ExcluirSetorComponent,
