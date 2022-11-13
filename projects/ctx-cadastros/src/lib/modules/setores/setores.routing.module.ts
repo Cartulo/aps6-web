@@ -2,9 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {SetoresComponent} from './setores.component';
-import {ListarSetoresComponent} from './pages/listar-setores/listar-setores.component';
-// import {NovoSetorComponent} from './pages/novo-setor/novo-setor.component';
-// import {EditarSetorComponent} from './pages/editar-setor/editar-setor.component';
+import {ListarSetoresComponent} from './pages';
 
 const routes: Routes = [
     {path: '', redirectTo: 'listar', pathMatch: 'full'},
