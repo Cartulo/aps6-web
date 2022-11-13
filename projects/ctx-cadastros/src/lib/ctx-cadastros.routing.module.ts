@@ -4,7 +4,7 @@ import {CtxCadastrosComponent} from './ctx-cadastros.component';
 
 
 const routes: Routes = [
-    {path: '', redirectTo: 'produtos', pathMatch: 'full'},
+    {path: '', redirectTo: '', pathMatch: 'full'},
     {
         path: '',
         component: CtxCadastrosComponent,

@@ -1,0 +1,1 @@
+export * from './listar-produtos/listar-produtos.component';

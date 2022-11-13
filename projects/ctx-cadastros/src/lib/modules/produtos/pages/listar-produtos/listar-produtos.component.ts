@@ -6,17 +6,23 @@ import {ActivatedRoute, Router} from '@angular/router';
     templateUrl: './listar-produtos.component.html'
 })
 export class ListarProdutosComponent implements OnInit {
-    // request: ObterTodasRequest;
-    // entidadeSelecionada: Produto;
-    // dialogExcluir: boolean;
+
+    produtos = [
+        {
+            id: '12345',
+            nome: 'Sim',
+            setor: 'Alimentício',
+            quantidade: 10
+        },
+        {
+            id: '54321',
+            nome: 'Não'
+        },
+    ]
 
     constructor(
-        // protected messageService: MessageService,
-        // protected formBuilder: FormBuilder,
-        // public utilService: UtilService,
         private router: Router,
         private route: ActivatedRoute,
-        // private service: ProdutosService
         ) { ;
     }
 

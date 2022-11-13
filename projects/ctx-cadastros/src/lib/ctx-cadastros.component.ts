@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ctx-ctx-cadastros',
-  template: `
-    <p>
-      ctx-cadastros works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: '<router-outlet></router-outlet>'
 })
 export class CtxCadastrosComponent implements OnInit {
 

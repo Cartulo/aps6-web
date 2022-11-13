@@ -10,11 +10,6 @@ import {ListarProdutosComponent} from './pages/listar-produtos/listar-produtos.c
 // import {ExcluirHobbyComponent} from './pages/excluir-hobby/excluir-hobby.component';
 
 @NgModule({
-    imports: [
-        ProdutosRoutingModule,
-        ComponentsModule,
-        ToolsModule
-    ],
     declarations: [
         ProdutosComponent,
         ListarProdutosComponent,
@@ -22,6 +17,11 @@ import {ListarProdutosComponent} from './pages/listar-produtos/listar-produtos.c
         // EditarHobbyComponent,
         // ExcluirHobbyComponent
     ],
+    imports: [
+        ProdutosRoutingModule,
+        ComponentsModule,
+        ToolsModule
+    ]
 })
 export class ProdutosModule {
 }
