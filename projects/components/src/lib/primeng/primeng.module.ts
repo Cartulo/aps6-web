@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 
+import {ImageModule} from 'primeng/image';
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
@@ -20,10 +21,10 @@ import {DialogModule} from 'primeng/dialog';
 import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
 import {DragDropModule} from 'primeng/dragdrop';
 import {DropdownModule} from 'primeng/dropdown';
-import {EditorModule} from 'primeng/editor';
+// import {EditorModule} from 'primeng/editor';
 import {FieldsetModule} from 'primeng/fieldset';
 import {FileUploadModule} from 'primeng/fileupload';
-import {FullCalendarModule} from 'primeng/fullcalendar';
+// import {FullCalendarModule} from 'primeng/fullcalendar';
 import {GalleriaModule} from 'primeng/galleria';
 import {GMapModule} from 'primeng/gmap';
 import {InplaceModule} from 'primeng/inplace';
@@ -78,6 +79,7 @@ const imports = [
     AutoCompleteModule,
     BreadcrumbModule,
     ButtonModule,
+    ImageModule,
     CalendarModule,
     CardModule,
     CarouselModule,
@@ -93,10 +95,10 @@ const imports = [
     DynamicDialogModule,
     DragDropModule,
     DropdownModule,
-    EditorModule,
+    // EditorModule,
     FieldsetModule,
     FileUploadModule,
-    FullCalendarModule,
+    // FullCalendarModule,
     GalleriaModule,
     GMapModule,
     InplaceModule,
