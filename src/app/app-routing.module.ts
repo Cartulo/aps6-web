@@ -10,7 +10,6 @@ import { CtxCadastrosComponent } from 'projects/ctx-cadastros/src/lib/ctx-cadast
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'cadastros', loadChildren: () => import('../../projects/ctx-cadastros/src/lib/ctx-cadastros.module').then(m => m.CtxCadastrosModule) },
                 ],
             },

@@ -3,6 +3,9 @@
     "compilerOptions": {
         "baseUrl": "./",
         "paths": {
+          "api": [
+            "dist/api"
+          ],
           "cadastros": [
             "dist/cadastros"
           ],

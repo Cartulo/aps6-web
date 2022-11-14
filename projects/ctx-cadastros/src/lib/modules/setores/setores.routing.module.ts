@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {SetoresComponent} from './setores.component';
-import {ListarSetoresComponent} from './pages';
+import {AdicionarSetorComponent, EditarSetorComponent, ListarSetoresComponent} from './pages';
 
 const routes: Routes = [
     {path: '', redirectTo: 'listar', pathMatch: 'full'},
@@ -10,8 +10,8 @@ const routes: Routes = [
         path: '', component: SetoresComponent,
         children: [
             {path: 'listar', component: ListarSetoresComponent},
-            // {path: 'adicionar', component: NovoSetorComponent},
-            // {path: 'editar/:id', component: EditarSetorComponent}
+            {path: 'adicionar', component: AdicionarSetorComponent},
+            {path: 'editar/:id', component: EditarSetorComponent}
         ]
     }
 ];
