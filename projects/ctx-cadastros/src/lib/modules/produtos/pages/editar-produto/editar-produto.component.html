@@ -1,0 +1,24 @@
+<app-notity></app-notity>
+<div class="p-grid content-section">
+    <p-toolbar class="p-col-12">
+        <div class="p-toolbar-group-left">
+            <button (click)="onClickSalvar()" label="Salvar" pButton pRipple type="button"></button>
+        </div>
+        <div class="p-toolbar-group-right">
+            <button (click)="onClickVoltar()" icon="pi pi-arrow-left" pButton pRipple type="button"></button>
+        </div>
+    </p-toolbar>
+    <div class="p-col-12">
+        <form novalidate [formGroup]="form" *ngIf="entidade">
+            <p-panel header="Atualizar Produto">
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12">
+                        <label>Nome</label>
+                        <input formControlName="nome" type="text" pInputText>
+                    </div>
+                </div>
+            </p-panel>
+            <br>
+        </form>
+    </div>
+</div>

@@ -2,16 +2,16 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {SetoresComponent} from './setores.component';
-import {AdicionarSetorComponent, EditarSetorComponent, ListarSetoresComponent} from './pages';
+import {AdicionarSetorComponent, ListarSetoresComponent} from './pages';
 
 const routes: Routes = [
     {path: '', redirectTo: 'listar', pathMatch: 'full'},
     {
         path: '', component: SetoresComponent,
         children: [
-            {path: 'listar', component: ListarSetoresComponent},
             {path: 'adicionar', component: AdicionarSetorComponent},
-            {path: 'editar/:id', component: EditarSetorComponent}
+            // {path: 'editar/:id', component: EditarSetorComponent}
+            {path: 'listar', component: ListarSetoresComponent},
         ]
     }
 ];
