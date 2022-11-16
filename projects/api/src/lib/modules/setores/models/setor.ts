@@ -1,4 +1,4 @@
-export interface Produto {
+export interface Setor {
     id: string;
     nome: string;
 }
