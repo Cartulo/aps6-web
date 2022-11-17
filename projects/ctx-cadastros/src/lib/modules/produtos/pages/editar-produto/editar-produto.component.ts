@@ -81,12 +81,13 @@ export class EditarProdutoComponent implements OnInit {
 
         this.service.editar(this.request.id, this.request).subscribe(
             async (res) => {
-                this.messageService.add({
-                    key: 'bc',
-                    severity: 'success',
-                    summary: 'Sucesso',
-                    detail: 'Produto atualizado',
-                });
+                setTimeout(() => this.messageService.add({
+                            key: 'bc',
+                            severity: 'success',
+                            summary: 'Sucesso',
+                            detail: 'Produto atualizado',
+                        }), 100
+                );
                 this.onClickVoltar();
             },
             (error) =>
