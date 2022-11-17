@@ -4,13 +4,13 @@ import {SetoresRoutingModule} from './setores.routing.module';
 import {ComponentsModule} from 'projects/components/src/lib/components.module';
 import {ToolsModule} from 'projects/tools/src/lib/tools.module';
 import {SetoresComponent} from './setores.component';
-import {AdicionarSetorComponent, ListarSetoresComponent} from './pages';
+import {AdicionarSetorComponent, EditarSetorComponent, ListarSetoresComponent} from './pages';
 
 @NgModule({
     declarations: [
         SetoresComponent,
         AdicionarSetorComponent,
-        //EditarSetorComponent,
+        EditarSetorComponent,
         ListarSetoresComponent
     ],
     imports: [

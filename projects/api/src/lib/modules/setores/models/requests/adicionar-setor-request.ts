@@ -1,3 +1,3 @@
 export interface AdicionarSetorRequest {
-    nome: string | null;
+    nome: string;
 }

@@ -20,21 +20,23 @@
             ></button>
         </div>
     </p-toolbar>
-    <form [formGroup]="form" novalidate class="col-12">
-        <p-panel header="Adicionar Produto">
-            <div class="fluid formgrid grid">
-                <div class="field col-12">
-                    <span class="p-float-label mt-2">
-                        <input
-                            formControlName="nome"
-                            id="float-input"
-                            type="text"
-                            pInputText
-                        />
-                        <label for="float-input">Nome</label>
-                    </span>
+    <div class="col-12">
+        <form [formGroup]="form" novalidate>
+            <p-panel header="Adicionar Produto">
+                <div class="fluid formgrid grid">
+                    <div class="field col-12">
+                        <span class="p-float-label mt-2">
+                            <input
+                                formControlName="nome"
+                                id="float-input"
+                                type="text"
+                                pInputText
+                            />
+                            <label for="float-input">Nome</label>
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </p-panel>
-    </form>
+            </p-panel>
+        </form>
+    </div>
 </div>

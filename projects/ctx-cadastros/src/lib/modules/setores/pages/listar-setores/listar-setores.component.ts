@@ -64,7 +64,12 @@ export class ListarSetoresComponent implements OnInit {
                             detail: 'Setor excluído',
                         });
                     },
-                    (error) => console.warn(error)
+                    (error) => this.messageService.add({
+                        key: 'bc',
+                        severity: 'danger',
+                        summary: 'Erro',
+                        detail: 'Entre em contato com o suporte',
+                    })
                 );
             },
         });
@@ -73,7 +78,12 @@ export class ListarSetoresComponent implements OnInit {
     private atualizarProdutos(): any {
         this.service.obterTodos().subscribe(
             async (res) => (this.setores = res),
-            (error) => console.warn(error)
+            (error) => this.messageService.add({
+                key: 'bc',
+                severity: 'danger',
+                summary: 'Erro',
+                detail: 'Entre em contato com o suporte',
+            })
         );
     }
 }

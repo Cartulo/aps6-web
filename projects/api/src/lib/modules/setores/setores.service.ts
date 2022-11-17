@@ -3,7 +3,7 @@ import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Setor } from './models/setor';
-import { AdicionarSetorRequest } from './models';
+import { AdicionarSetorRequest, AtualizarSetorRequest } from './models';
 
 @Injectable({ providedIn: 'root' })
 export class SetoresService {
@@ -21,6 +21,10 @@ export class SetoresService {
 
     adicionar(request: AdicionarSetorRequest): Observable<Setor> {
         return this.http.post<any>(this.url, request);
+    }
+
+    editar(id: string, request: AtualizarSetorRequest): Observable<Setor> {
+        return this.http.put<any>(`${this.url}/${id}`, request);
     }
 
     excluir(id: string): Observable<string> {

@@ -13,11 +13,9 @@ import { AdicionarSetorRequest } from 'projects/api/src/lib/modules/setores/mode
 })
 export class AdicionarSetorComponent {
     ptBR: any;
-    request: AdicionarSetorRequest = {
-        nome: '',
-    };
+    request: any;
 
-    form = new FormGroup({
+    form: FormGroup = new FormGroup({
         nome: new FormControl(''),
         setor: new FormControl(''),
     });
@@ -31,21 +29,29 @@ export class AdicionarSetorComponent {
     ) {}
 
     onClickSalvar() {
-        var f = this.form.controls;
+        let f = this.form.controls;
 
         this.request = {
-            nome: f.nome.value,
+            nome: f['nome'].value,
         };
 
         this.service.adicionar(this.request).subscribe(
-            async (res) =>
+            async (res) => {
                 this.messageService.add({
                     key: 'bc',
                     severity: 'success',
                     summary: 'Sucesso',
                     detail: 'Setor adicionado',
-                }),
-            (error) => console.warn(error)
+                });
+                this.onClickVoltar();
+            },
+            (error) =>
+                this.messageService.add({
+                    key: 'bc',
+                    severity: 'danger',
+                    summary: 'Erro',
+                    detail: 'Entre em contato com o suporte',
+                })
         );
     }
 
