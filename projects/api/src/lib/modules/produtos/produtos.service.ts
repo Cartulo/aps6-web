@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { Produto } from './models/produto';
 import { AdicionarProdutoRequest } from './models/requests/adicionar-produto-request';
+import { AtualizarProdutoRequest } from './models/requests/atualizar-produto-request';
+import { Setor } from '../setores/models/setor';
 
 @Injectable({ providedIn: 'root' })
 export class ProdutosService {
@@ -11,23 +13,23 @@ export class ProdutosService {
 
     constructor(private http: HttpClient) {}
 
-    obterTodos(): Observable<any> {
+    obterTodos(): Observable<Setor> {
         return this.http.get<any>(`${this.url}`).pipe(map((o) => o));
     }
 
-    obterPorId(id: string): Observable<any> {
+    obterPorId(id: string): Observable<Setor> {
         return this.http.get<any>(`${this.url}/${id}`).pipe(map((o) => o));
     }
 
     adicionar(request: AdicionarProdutoRequest): Observable<Produto> {
-        return this.http
-            .post<any>(this.url, request)
-            .pipe(map((o) => o.result.id));
+        return this.http.post<any>(this.url, request);
+    }
+
+    editar(id: string, request: AtualizarProdutoRequest): Observable<Setor> {
+        return this.http.put<any>(`${this.url}/${id}`, request);
     }
 
     excluir(id: string): Observable<string> {
-        return this.http
-            .delete<any>(`${this.url}/${id}`)
-            .pipe(map((o) => o.result.id));
+        return this.http.delete<any>(`${this.url}/${id}`);
     }
 }

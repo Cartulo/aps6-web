@@ -4,13 +4,13 @@ import {ProdutosRoutingModule} from './produtos.routing.module';
 import {ComponentsModule} from 'projects/components/src/lib/components.module';
 import {ToolsModule} from 'projects/tools/src/lib/tools.module';
 import {ProdutosComponent} from './produtos.component';
-import {AdicionarProdutoComponent, ListarProdutosComponent} from './pages';
+import {AdicionarProdutoComponent, EditarProdutoComponent, ListarProdutosComponent} from './pages';
 
 @NgModule({
     declarations: [
         ProdutosComponent,
         AdicionarProdutoComponent,
-        // EditarProdutoComponent
+        EditarProdutoComponent,
         ListarProdutosComponent
     ],
     imports: [

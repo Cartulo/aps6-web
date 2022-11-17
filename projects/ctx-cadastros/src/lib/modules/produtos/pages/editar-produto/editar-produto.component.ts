@@ -1,98 +1,107 @@
-// import {Component, OnInit} from '@angular/core';
-// import {FormBuilder, Validators} from '@angular/forms';
-// import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
-// import {Subscription} from 'rxjs';
-// import {MessageService} from 'primeng/api';
-// import {StringUtils} from '../../../../../../../tools/src/lib/utils';
-// import {PageReactiveAbstract} from '../../../../../../../tools/src/lib/abstracts';
-// import {DateService} from '../../../../../../../tools/src/lib/services';
-// import {AtualizarProdutoRequest, Produto} from 'projects/api/src/lib/modules/clientes/produtos/models';
-// import {ProdutosService} from 'projects/api/src/lib/modules/clientes';
+import { Produto } from 'projects/api/src/lib/modules/produtos/models/produto';
+import { ProdutosService } from 'projects/api/src/lib/modules/produtos/produtos.service';
+import { Subscription } from 'rxjs';
 
-// @Component({
-//     selector: 'ctx-cadastros-produtos-editar',
-//     templateUrl: './editar-produto.component.html'
-// })
-// export class EditarProdutoComponent extends PageReactiveAbstract implements OnInit {
-//     inscricao: Subscription;
-//     ptBR: any;
-//     valorMask: any;
-//     id: string;
-//     request: AtualizarProdutoRequest;
-//     entidade: Produto;
+@Component({
+    selector: 'ctx-cadastros-produtos-editar',
+    templateUrl: './editar-produto.component.html',
+})
+export class EditarProdutoComponent implements OnInit {
+    inscricao: Subscription = Subscription.EMPTY;
 
-//     constructor(
-//         protected messageService: MessageService,
-//         protected formBuilder: FormBuilder,
-//         private router: Router,
-//         private route: ActivatedRoute,
-//         private service: ProdutosService,
-//         private dateService: DateService) {
-//         super(messageService, formBuilder);
-//         this.ptBR = this.dateService.getLocale();
-//         this.valorMask = StringUtils.obterMascaraMoeda();
+    form: FormGroup = new FormGroup({
+        id: new FormControl(),
+        nome: new FormControl(),
+    });
 
-//         super.setValidationMessages({
-//             nome: {
-//                 required: 'Informe o nome'
-//             },
-//             codigo: {
-//                 required: 'Informe o código'
-//             }
-            
-//         });
-//     }
+    entidade: Produto = {
+        id: '',
+        nome: '',
+    };
 
-//     ngOnInit(): void {
-//         this.form = this.formBuilder.group({
-//             nome: [null, [Validators.required]],
-//             codigo: [null, [Validators.required]]
-//         });
+    request: any;
 
-//         this.route.params.subscribe(params => {
-//             this.id = params.id;
+    id: string = '';
 
-//             if (StringUtils.isNullOrEmpty(this.id)) {
-//                 return;
-//             }
+    constructor(
+        protected formBuilder: FormBuilder,
+        private router: Router,
+        private route: ActivatedRoute,
+        private messageService: MessageService,
+        private service: ProdutosService
+    ) {}
 
-//             this.inscricao = this.service.obter(this.id).subscribe(
-//                 res => {
-//                     setTimeout(() => {
-//                         this.entidade = res;
-//                         this.form.patchValue({
-//                             nome: this.entidade.nome,
-//                             codigo: this.entidade.codigo
-//                         });
-//                     }, 100);
-//                 },
-//                 error => this.onServerFailed(error)
-//             );
-//         });
-//     }
+    ngOnInit(): void {
+        var f = this.form.controls;
 
-//     async onClickSalvar() {
-//         if (await this.onClientFailed()) {
-//             return;
-//         }
+        this.form = this.formBuilder.group({
+            id: [null, [Validators.required]],
+            nome: [null, [Validators.required]],
+        });
 
-//         this.block();
+        this.route.params.subscribe((params) => {
+            this.id = params['id'];
 
-//         this.request = {
-//             id: this.id,
-//             nome: this.f.nome.value,
-//             codigo: this.f.codigo.value
-//         };
+            this.inscricao = this.service.obterPorId(this.id).subscribe(
+                async (res) => {
+                    this.entidade = res;
+                    this.form.patchValue({
+                        id: this.entidade.id,
+                        nome: this.entidade.nome,
+                    });
+                },
+                (error) =>
+                    this.messageService.add({
+                        key: 'bc',
+                        severity: 'danger',
+                        summary: 'Erro',
+                        detail: 'Entre em contato com o suporte',
+                    })
+            );
+        });
+    }
 
-//         this.inscricao = this.service.atualizar(this.id, this.request)
-//             .subscribe(
-//                 () => this.onServerSuccess(() => this.onClickVoltar()),
-//                 error => this.onServerFailed(error)
-//             );
-//     }
+    async onClickSalvar() {
+        let f = this.form.controls;
 
-//     async onClickVoltar() {
-//         await this.router.navigate(['../../listar'], {relativeTo: this.route});
-//     }
-// }
+        this.request = {
+            id: f['id'].value,
+            nome: f['nome'].value,
+        };
+
+        this.service.editar(this.request.id, this.request).subscribe(
+            async (res) => {
+                this.messageService.add({
+                    key: 'bc',
+                    severity: 'success',
+                    summary: 'Sucesso',
+                    detail: 'Produto atualizado',
+                });
+                this.onClickVoltar();
+            },
+            (error) =>
+                this.messageService.add({
+                    key: 'bc',
+                    severity: 'danger',
+                    summary: 'Erro',
+                    detail: 'Entre em contato com o suporte',
+                })
+        );
+    }
+
+    async onClickVoltar() {
+        await this.router.navigate(['../../listar'], {
+            relativeTo: this.route,
+        });
+    }
+}

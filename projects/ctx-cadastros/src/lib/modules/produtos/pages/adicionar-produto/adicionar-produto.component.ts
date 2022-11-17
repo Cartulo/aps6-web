@@ -38,8 +38,20 @@ export class AdicionarProdutoComponent {
         };
 
         this.service.adicionar(this.request).subscribe(
-            async (res) => console.log(res),
-            (error) => console.warn(error)
+            async (res) =>
+                this.messageService.add({
+                    key: 'bc',
+                    severity: 'success',
+                    summary: 'Sucesso',
+                    detail: 'Produto adicionado',
+                }),
+            (error) =>
+                this.messageService.add({
+                    key: 'bc',
+                    severity: 'danger',
+                    summary: 'Erro',
+                    detail: 'Entre em contato com o suporte',
+                })
         );
     }
 

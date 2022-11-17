@@ -10,7 +10,7 @@ import { ProdutosService } from 'projects/api/src/lib/modules/produtos/produtos.
     templateUrl: './listar-produtos.component.html',
 })
 export class ListarProdutosComponent implements OnInit {
-    produtos: any[] = [];
+    produtos: any;
 
     entidade: Produto = {
         id: '',
@@ -66,7 +66,12 @@ export class ListarProdutosComponent implements OnInit {
                             detail: 'Produto excluído com sucesso!',
                         });
                     },
-                    (error) => console.warn(error)
+                    (error) => this.messageService.add({
+                        key: 'bc',
+                        severity: 'danger',
+                        summary: 'Erro',
+                        detail: 'Entre em contato com o suporte',
+                    })
                 );
             },
         });
@@ -75,7 +80,12 @@ export class ListarProdutosComponent implements OnInit {
     atualizarProdutos(): any {
         this.service.obterTodos().subscribe(
             async (res) => (this.produtos = res),
-            (error) => console.warn(error)
+            (error) => this.messageService.add({
+                key: 'bc',
+                severity: 'danger',
+                summary: 'Erro',
+                detail: 'Entre em contato com o suporte',
+            })
         );
     }
 }
