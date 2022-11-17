@@ -1,20 +1,75 @@
+<p-toast position="bottom-center" key="bc"></p-toast>
 <div class="grid content-section">
-    <p-table #dt [value]="produtos" [rows]="10" [responsive]="true" [paginator]="true" [rowHover]="true" paginatorPosition="top" class="col-12">
+    <p-toolbar class="col-12">
+        <div class="toolbar-group-left">
+            <button
+                pButton
+                pRipple
+                type="button"
+                (click)="onClickNovo()"
+                label="Novo Produto"
+            ></button>
+        </div>
+        <!-- <div class="toolbar-group-right">
+            <button pButton pRipple type="button" (click)="onClickAtualizar()" icon="pi pi-refresh" class="ml-2"></button>
+            <i class="pi pi-bars mr-2 ml-2"></i>
+            <button pButton pRipple type="button" (click)="onClickVoltar()" icon="pi pi-arrow-left"></button>
+        </div> -->
+    </p-toolbar>
+    <p-table
+        #dt
+        [value]="produtos"
+        [rows]="10"
+        [responsive]="true"
+        [paginator]="true"
+        [rowHover]="true"
+        paginatorPosition="top"
+        class="col-12"
+    >
         <ng-template pTemplate="header">
             <tr>
-                <th>Código</th>
                 <th>Nome</th>
-                <th>Setor</th>
-                <th>Quantidade</th>
+                <th class="column-button-2"></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-row>
             <tr>
-                <td>{{product.id}}</td>
-                <td>{{product.nome}}</td>
-                <td>{{product.setor}}</td>
-                <td>{{product.quantidade}}</td>
+                <td>{{ row.nome }}</td>
+                <td>
+                    <div class="flex justify-content-center">
+                        <div class="mr-2">
+                            <button
+                                pButton
+                                pRipple
+                                type="button"
+                                (click)="onClickEditar(row)"
+                                icon="pi pi-pencil"
+                                class="button-warning"
+                            ></button>
+                        </div>
+                        <div>
+                            <button
+                                pButton
+                                pRipple
+                                type="button"
+                                (click)="onClickExcluir(row)"
+                                icon="pi pi-trash"
+                                class="button-danger"
+                            ></button>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </ng-template>
     </p-table>
+</div>
+
+<div>
+    <p-confirmDialog
+        [style]="{ width: '50vw' }"
+        [baseZIndex]="10000"
+        rejectButtonStyleClass="p-button-text"
+        [acceptLabel]="'Sim'"
+        [rejectLabel]="'Não'"
+    ></p-confirmDialog>
 </div>
