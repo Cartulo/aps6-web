@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ctx-ctx-gerenciamento',
-  template: `
-    <p>
-      ctx-gerenciamento works!
-    </p>
-  `,
-  styles: [
-  ]
+  selector: 'ctx-gerenciamento',
+  template: '<router-outlet></router-outlet>'
 })
 export class CtxGerenciamentoComponent implements OnInit {
 

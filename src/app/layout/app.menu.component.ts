@@ -21,6 +21,12 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Setores', routerLink: ['cadastros/setores']}
                 ]
             },
+            {
+                label: 'Gerenciamento',
+                items: [
+                    {label: 'Movimentações', routerLink: ['gerenciamento/movimentacoes']}
+                ]
+            }
         ];
     }
 }
