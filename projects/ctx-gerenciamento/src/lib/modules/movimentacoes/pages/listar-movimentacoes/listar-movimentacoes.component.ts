@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { Movimentacao } from 'projects/api/src/lib/modules/movimentacoes/models/movimentacao';
-import { MovimentacoesService } from 'projects/api/src/lib/modules/movimentacoes/movimentacoes.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {Movimentacao} from 'projects/api/src/lib/modules/movimentacoes/models/movimentacao';
+import {MovimentacoesService} from 'projects/api/src/lib/modules/movimentacoes/movimentacoes.service';
+import {ProdutosService} from 'projects/api/src/lib/modules/produtos/produtos.service';
 
 @Component({
     selector: 'ctx-cadastros-movimentacoes-listar',
@@ -17,7 +18,6 @@ export class ListarMovimentacoesComponent implements OnInit {
         id: '',
         quantidade: 0,
         produtoId: '',
-        produtoDesc: '',
         setorEntradaId: '',
         setorSaidaId: '',
     };
@@ -26,7 +26,6 @@ export class ListarMovimentacoesComponent implements OnInit {
         id: '',
         quantidade: 0,
         produtoId: '',
-        produtoDesc: '',
         setorEntradaId: '',
         setorSaidaId: '',
     };
@@ -40,15 +39,17 @@ export class ListarMovimentacoesComponent implements OnInit {
         private messageService: MessageService,
         private router: Router,
         private route: ActivatedRoute,
+        private produtosService: ProdutosService,
         private service: MovimentacoesService
-    ) {}
-    
+    ) { }
+
     ngOnInit(): void {
-        this.atualizarMovimentacoes();
+        this.obterProdutos();
+        this.obterMovimentacoes();
     }
 
     onClickNovo() {
-        this.router.navigate(['../adicionar'], { relativeTo: this.route });
+        this.router.navigate(['../adicionar'], {relativeTo: this.route});
     }
 
     async onClickEditar(entidade: Movimentacao): Promise<void> {
@@ -58,24 +59,23 @@ export class ListarMovimentacoesComponent implements OnInit {
     }
 
     async onClickAtualizar() {
-        this.atualizarMovimentacoes();
-        console.log(this.movimentacoes);
+        this.obterMovimentacoes();
     }
 
     onClickExcluir(entidade: Movimentacao) {
         this.confirmationService.confirm({
             message: `Você deseja excluir esta movimentação da lista de movimentações?`,
-            header: 'Excluir Movimentacao',
+            header: 'Excluir Movimentação',
             icon: 'pi pi-info-circle',
             accept: () => {
                 this.inscricao = this.service.excluir(entidade.id).subscribe(
                     async (res) => {
-                        this.atualizarMovimentacoes();
+                        this.obterMovimentacoes();
                         this.messageService.add({
                             key: 'bc',
                             severity: 'success',
                             summary: 'Sucesso',
-                            detail: 'Movimentacao excluído',
+                            detail: 'Movimentação excluída',
                         });
                     },
                     (error) =>
@@ -90,10 +90,25 @@ export class ListarMovimentacoesComponent implements OnInit {
         });
     }
 
-    private atualizarMovimentacoes(): any {
+    private obterMovimentacoes(): any {
         this.service.obterTodas().subscribe(
             async (res) => {
                 this.movimentacoes = res;
+            },
+            (error) =>
+                this.messageService.add({
+                    key: 'bc',
+                    severity: 'danger',
+                    summary: 'Erro',
+                    detail: 'Entre em contato com o suporte',
+                })
+        );
+    }
+
+    private obterProdutos(): any {
+        this.produtosService.obterTodos().subscribe(
+            async (res) => {
+                this.produtos = res;
             },
             (error) =>
                 this.messageService.add({
