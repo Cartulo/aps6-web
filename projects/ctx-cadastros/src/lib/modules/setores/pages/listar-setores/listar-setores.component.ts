@@ -35,7 +35,7 @@ export class ListarSetoresComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.atualizarProdutos();
+        this.obterProdutos();
     }
 
     onClickNovo() {
@@ -56,7 +56,7 @@ export class ListarSetoresComponent implements OnInit {
             accept: () => {
                 this.inscricao = this.service.excluir(entidade.id).subscribe(
                     async (res) => {
-                        this.atualizarProdutos();
+                        this.obterProdutos();
                         this.messageService.add({
                             key: 'bc',
                             severity: 'success',
@@ -75,7 +75,7 @@ export class ListarSetoresComponent implements OnInit {
         });
     }
 
-    private atualizarProdutos(): any {
+    private obterProdutos(): any {
         this.service.obterTodos().subscribe(
             async (res) => (this.setores = res),
             (error) => this.messageService.add({

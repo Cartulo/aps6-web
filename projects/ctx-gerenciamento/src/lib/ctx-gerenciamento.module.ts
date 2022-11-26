@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { ComponentsModule } from 'projects/components/src/public-api';
-import { ToolsModule } from 'projects/tools/src/public-api';
-import { CtxGerenciamentoComponent } from './ctx-gerenciamento.component';
-import { CtxGerenciamentoRoutingModule } from './ctx-gerenciamento.routing.module';
-import { MovimentacoesModule } from './modules/movimentacoes/movimentacoes.module';
+import {NgModule} from '@angular/core';
+import {ComponentsModule} from 'projects/components/src/public-api';
+import {ToolsModule} from 'projects/tools/src/public-api';
+import {CtxGerenciamentoComponent} from './ctx-gerenciamento.component';
+import {CtxGerenciamentoRoutingModule} from './ctx-gerenciamento.routing.module';
+import {MovimentacoesModule} from './modules/movimentacoes/movimentacoes.module';
 
 @NgModule({
     declarations: [CtxGerenciamentoComponent],
@@ -11,9 +11,8 @@ import { MovimentacoesModule } from './modules/movimentacoes/movimentacoes.modul
         ComponentsModule,
         ToolsModule,
         CtxGerenciamentoRoutingModule,
-        MovimentacoesModule,
-        // SetoresModule
+        MovimentacoesModule
     ],
     exports: [CtxGerenciamentoComponent],
 })
-export class CtxGerenciamentoModule {}
+export class CtxGerenciamentoModule { }

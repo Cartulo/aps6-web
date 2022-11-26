@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CtxGerenciamentoComponent} from './ctx-gerenciamento.component';
 
-
 const routes: Routes = [
     {path: '', redirectTo: '', pathMatch: 'full'},
     {
