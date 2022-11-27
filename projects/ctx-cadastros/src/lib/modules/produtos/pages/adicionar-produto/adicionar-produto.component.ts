@@ -38,13 +38,16 @@ export class AdicionarProdutoComponent {
         };
 
         this.service.adicionar(this.request).subscribe(
-            async (res) =>
-                this.messageService.add({
-                    key: 'bc',
-                    severity: 'success',
-                    summary: 'Sucesso',
-                    detail: 'Produto adicionado',
-                }),
+            async (res) => {
+                setTimeout(() => this.messageService.add({
+                            key: 'bc',
+                            severity: 'success',
+                            summary: 'Sucesso',
+                            detail: 'Produto adicionado',
+                        }), 100
+                );
+                this.onClickVoltar();
+            },
             (error) =>
                 this.messageService.add({
                     key: 'bc',

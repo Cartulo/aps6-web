@@ -37,12 +37,13 @@ export class AdicionarSetorComponent {
 
         this.service.adicionar(this.request).subscribe(
             async (res) => {
-                this.messageService.add({
-                    key: 'bc',
-                    severity: 'success',
-                    summary: 'Sucesso',
-                    detail: 'Setor adicionado',
-                });
+                setTimeout(() => this.messageService.add({
+                            key: 'bc',
+                            severity: 'success',
+                            summary: 'Sucesso',
+                            detail: 'Setor adicionado',
+                        }), 100
+                );
                 this.onClickVoltar();
             },
             (error) =>

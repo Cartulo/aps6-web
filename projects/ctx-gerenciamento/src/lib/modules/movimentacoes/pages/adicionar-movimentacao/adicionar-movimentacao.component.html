@@ -1,0 +1,38 @@
+<p-toast position="bottom-center" key="bc"></p-toast>
+<div class="grid content-section">
+    <p-toolbar class="col-12">
+        <div class="toolbar-group-left">
+            <button (click)="onClickSalvar()" label="Salvar" pButton pRipple type="button"></button>
+        </div>
+        <div class="toolbar-group-right">
+            <button (click)="onClickVoltar()" icon="pi pi-arrow-left" pButton pRipple type="button"></button>
+        </div>
+    </p-toolbar>
+    <form [formGroup]="form" novalidate class="col-12">
+        <p-panel header="Adicionar Movimentação">
+            <div class="fluid formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label mt-2">
+                        <input formControlName="quantidade" id="float-input" type="text" pInputText />
+                        <label for="float-input">Quantidade</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label>Produto</label>
+                    <p-dropdown [options]="produtos" optionLabel="nome" optionValue="id" formControlName="produtoId"
+                        class="ml-2"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label>Setor de Entrada</label>
+                    <p-dropdown [options]="setores" optionLabel="nome" optionValue="id" formControlName="setorEntradaId"
+                        class="ml-2"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label>Setor de Saída</label>
+                    <p-dropdown [options]="setores" optionLabel="nome" optionValue="id" formControlName="setorSaidaId"
+                        class="ml-2"></p-dropdown>
+                </div>
+            </div>
+        </p-panel>
+    </form>
+</div>

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Produto } from './models/produto';
 import { AdicionarProdutoRequest } from './models/requests/adicionar-produto-request';
 import { AtualizarProdutoRequest } from './models/requests/atualizar-produto-request';
-import { Setor } from '../setores/models/setor';
 
 @Injectable({ providedIn: 'root' })
 export class ProdutosService {
@@ -13,11 +12,11 @@ export class ProdutosService {
 
     constructor(private http: HttpClient) {}
 
-    obterTodos(): Observable<Setor> {
+    obterTodos(): Observable<Produto[]> {
         return this.http.get<any>(`${this.url}`).pipe(map((o) => o));
     }
 
-    obterPorId(id: string): Observable<Setor> {
+    obterPorId(id: string): Observable<Produto> {
         return this.http.get<any>(`${this.url}/${id}`).pipe(map((o) => o));
     }
 
@@ -25,7 +24,7 @@ export class ProdutosService {
         return this.http.post<any>(this.url, request);
     }
 
-    editar(id: string, request: AtualizarProdutoRequest): Observable<Setor> {
+    editar(id: string, request: AtualizarProdutoRequest): Observable<Produto> {
         return this.http.put<any>(`${this.url}/${id}`, request);
     }
 
