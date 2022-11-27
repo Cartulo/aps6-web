@@ -12,7 +12,7 @@ export class ProdutosService {
 
     constructor(private http: HttpClient) {}
 
-    obterTodos(): Observable<Produto> {
+    obterTodos(): Observable<Produto[]> {
         return this.http.get<any>(`${this.url}`).pipe(map((o) => o));
     }
 

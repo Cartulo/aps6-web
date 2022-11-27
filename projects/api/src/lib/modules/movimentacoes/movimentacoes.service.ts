@@ -20,6 +20,10 @@ export class MovimentacoesService {
         return this.http.get<any>(`${this.url}/${id}`).pipe(map((o) => o));
     }
 
+    obterPorProduto(produtoId: string): Observable<Movimentacao> {
+        return this.http.post<any>(`${this.url}/por-produto?produtoId=${produtoId}`, null);
+    }
+
     adicionar(request: AdicionarMovimentacaoRequest): Observable<Movimentacao> {
         return this.http.post<any>(this.url, request);
     }

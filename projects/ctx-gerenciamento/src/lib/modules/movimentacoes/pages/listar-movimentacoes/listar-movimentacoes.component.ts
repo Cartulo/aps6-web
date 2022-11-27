@@ -5,13 +5,17 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {Movimentacao} from 'projects/api/src/lib/modules/movimentacoes/models/movimentacao';
 import {MovimentacoesService} from 'projects/api/src/lib/modules/movimentacoes/movimentacoes.service';
 import {ProdutosService} from 'projects/api/src/lib/modules/produtos/produtos.service';
+import {Produto} from 'projects/api/src/lib/modules/produtos/models';
+import {SetoresService} from 'projects/api/src/lib/modules/setores/setores.service';
+import {Setor} from 'projects/api/src/lib/modules/setores/models/setor';
 
 @Component({
     selector: 'ctx-cadastros-movimentacoes-listar',
     templateUrl: './listar-movimentacoes.component.html',
 })
 export class ListarMovimentacoesComponent implements OnInit {
-    produtos: any;
+    produtos: Produto[] = [];
+    setores: Setor[] = [];
     movimentacoes: any;
 
     entidade: Movimentacao = {
@@ -40,11 +44,13 @@ export class ListarMovimentacoesComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private produtosService: ProdutosService,
+        private setoresService: SetoresService,
         private service: MovimentacoesService
     ) { }
 
     ngOnInit(): void {
         this.obterProdutos();
+        this.obterSetores();
         this.obterMovimentacoes();
     }
 
@@ -90,7 +96,15 @@ export class ListarMovimentacoesComponent implements OnInit {
         });
     }
 
-    private obterMovimentacoes(): any {
+    obterNomeDoProdutoPorId(produtoId: string) {
+        return this.produtos.filter(o => o.id === produtoId)[0].nome;
+    }
+
+    obterNomeDoSetorPorId(setorId: string) {
+        return this.setores.filter(o => o.id === setorId)[0].nome;
+    }
+
+    private obterMovimentacoes() {
         this.service.obterTodas().subscribe(
             async (res) => {
                 this.movimentacoes = res;
@@ -105,10 +119,25 @@ export class ListarMovimentacoesComponent implements OnInit {
         );
     }
 
-    private obterProdutos(): any {
+    private obterProdutos() {
         this.produtosService.obterTodos().subscribe(
             async (res) => {
                 this.produtos = res;
+            },
+            (error) =>
+                this.messageService.add({
+                    key: 'bc',
+                    severity: 'danger',
+                    summary: 'Erro',
+                    detail: 'Entre em contato com o suporte',
+                })
+        );
+    }
+
+    private obterSetores() {
+        this.setoresService.obterTodos().subscribe(
+            async (res) => {
+                this.setores = res;
             },
             (error) =>
                 this.messageService.add({

@@ -15,20 +15,24 @@
             <tr>
                 <th>Nome</th>
                 <th>Quantidade</th>
+                <th>Setor de Entrada</th>
+                <th>Setor de Saída</th>
                 <th class="column-button-2"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-row>
             <tr>
-                <td>{{ row.produtoId }}</td>
+                <td>{{ obterNomeDoProdutoPorId(row.produtoId) }}</td>
                 <td>{{ row.quantidade }}</td>
+                <td>{{ obterNomeDoSetorPorId(row.setorEntradaId) }}</td>
+                <td>{{ obterNomeDoSetorPorId(row.setorSaidaId) }}</td>
                 <td>
                     <div class="flex justify-content-center">
-                        <div class="mr-2">
+                        <div>
                             <button pButton pRipple type="button" (click)="onClickEditar(row)" icon="pi pi-pencil"
                                 class="button-warning"></button>
                         </div>
-                        <div>
+                        <div class="ml-2">
                             <button pButton pRipple type="button" (click)="onClickExcluir(row)" icon="pi pi-trash"
                                 class="button-danger"></button>
                         </div>
